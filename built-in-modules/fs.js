@@ -1,10 +1,13 @@
 const fs = require('fs')
 const path = require('path')
 
-const val = path.resolve(__dirname);
+const val = path.resolve(__dirname, '..', 'content/subfolder');
 console.log(val)
 
-fs.writeFileSync(path.join(val, 'data.txt'), 'Hello this is the text file', 'utf-8')
-const data = fs.readFileSync(path.join(val, 'data.txt'), 'utf-8')
+const original_text = fs.readFileSync(path.join(val, 'text.txt'), 'utf-8');
+console.log('original_text: ', original_text);
 
-console.log(data.buffer)
+fs.writeFileSync(path.join(val, 'text.txt'), 'This is the text that will be replaced.', 'utf-8')
+const data = fs.readFileSync(path.join(val, 'text.txt'), 'utf-8')
+
+console.log(data)
